@@ -13,7 +13,9 @@ for i in month:
     result = re.findall ('http://tema.livejournal.com/2015/'+ i + '/[0-9]+', homepage_text)
     for j in result:
         postpage = urllib.request.urlopen(j)
-        tree = etree.HTML(postpage)
+        stringpostpage=postpage.read()
+        print(stringpostpage)
+        tree = etree.HTML(stringpostpage)
         for i in tree.xpath('//*[@class="subject"]'):
             print (i)
         
