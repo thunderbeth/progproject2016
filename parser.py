@@ -12,7 +12,6 @@ for i in month:
     for j in result:
         postpage = urllib.request.urlopen(j)
         stringpostpage=postpage.read()
-        print(j)
         soup = BeautifulSoup(stringpostpage, "lxml")
         texts = soup.findAll('td',class_ ='entry')
         for i in texts:
