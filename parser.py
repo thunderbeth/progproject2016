@@ -22,6 +22,16 @@ def pauk_texts(link):
                 cleantext = re.sub('Tags:.*?Share','',cleantext)
                 text_output.write(cleantext)
         text_output.close()
+def ListToFreqDict(wordlist, length):
+	wordfreq = [wordlist.count(p) for p in wordlist]
+	freqmetric = [x / length for x in wordfreq]
+	perem = zip(wordlist,freqmetric)
+	perem = list(set(perem))
+	return perem
+def sortFreqDict(freqdict):
+	aux = sorted(freqdict,key=(lambda item: item[1]), reverse=True)
+	aux = sorted(aux,key=lambda item: item[0])
+	return aux
 def bigrammer(folder):
     for filename in os.listdir(folder):
         print(os.listdir(folder))
@@ -29,14 +39,15 @@ def bigrammer(folder):
         file_path = path.relpath(folder+'/'+filename)
         with open(file_path, encoding='utf-8') as f:
             content = f.read().lower()
-            content = re.sub('[^a-zа-я\ \']+', " ", content)
+            content = re.sub('[^а-я\ \']+', " ", content)
             words = list(content.split())
             biwords = nltk.bigrams(words)
-            print(biwords)
+            bifreq = ListToFreqDict(list(biwords),len(words))
+            bisortfreq = sortFreqDict(bifreq)
             text_output2 = open(filename+'_bigramy.txt', 'w', encoding='utf-8')
-            text_output2.write(str(list(set(list(biwords)))))
+            text_output2.write(str(bisortfreq))
             text_output2.close()
             f.close()
             print('Bigrams ready')
 #pauk_texts('http://dolboeb.livejournal.com/2015/')
-bigrammer('Lebedev')
+bigrammer('Nosik')
