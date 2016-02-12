@@ -30,7 +30,7 @@ def ListToFreqDict(wordlist, length):
 	return perem
 def sortFreqDict(freqdict):
 	aux = sorted(freqdict,key=(lambda item: item[1]), reverse=True)
-	aux = sorted(aux,key=lambda item: item[0])
+	#aux = sorted(aux,key=lambda item: item[0])
 	return aux
 def bigrammer(folder):
     for filename in os.listdir(folder):
@@ -50,4 +50,4 @@ def bigrammer(folder):
             f.close()
             print('Bigrams ready')
 #pauk_texts('http://dolboeb.livejournal.com/2015/')
-bigrammer('Nosik')
+bigrammer('Lebedev')
