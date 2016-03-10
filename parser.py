@@ -24,11 +24,7 @@ def pauk_texts(link):
         text_output.close()
 def ListToFreqDict(wordlist):
 	wordfreq = [wordlist.count(p) for p in wordlist]
-<<<<<<< Updated upstream
 	freqmetric = [x  for x in wordfreq]
-=======
-	freqmetric = [x for x in wordfreq]
->>>>>>> Stashed changes
 	perem = zip(wordlist,freqmetric)
 	perem = list(set(perem))
 	return perem
@@ -37,6 +33,7 @@ def sortFreqDict(freqdict):
 	#aux = sorted(aux,key=lambda item: item[0])
 	return aux
 def bigrammer(folder):
+    counter = 0
     for filename in os.listdir(folder):
         print(os.listdir(folder))
         print('Starting file parsing...')
@@ -49,9 +46,14 @@ def bigrammer(folder):
             bifreq = ListToFreqDict(list(biwords))
             bisortfreq = sortFreqDict(bifreq)
             text_output2 = open(filename+'_bigramy.txt', 'w', encoding='utf-8')
-            text_output2.write(str(bisortfreq))
+            for bisort in bisortfreq:
+                text_output2.write(str(bisortfreq))
+                counter += 1
+            if counter == 1000:
+                break
+            
             text_output2.close()
             f.close()
             print('Bigrams ready')
 #pauk_texts('http://dolboeb.livejournal.com/2015/')
-bigrammer('Lebedev')
+bigrammer('Nosik')
