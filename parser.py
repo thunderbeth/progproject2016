@@ -50,4 +50,4 @@ def bigrammer(folder):
             f.close()
             print('Bigrams ready')
 #pauk_texts('http://dolboeb.livejournal.com/2015/')
-bigrammer('Lebedev')
+bigrammer('Nosik')
