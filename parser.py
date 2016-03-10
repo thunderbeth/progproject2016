@@ -24,7 +24,7 @@ def pauk_texts(link):
         text_output.close()
 def ListToFreqDict(wordlist, length):
 	wordfreq = [wordlist.count(p) for p in wordlist]
-	freqmetric = [x / length for x in wordfreq]
+	freqmetric = [x  for x in wordfreq]
 	perem = zip(wordlist,freqmetric)
 	perem = list(set(perem))
 	return perem
