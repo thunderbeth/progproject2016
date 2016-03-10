@@ -33,23 +33,27 @@ def sortFreqDict(freqdict):
 	#aux = sorted(aux,key=lambda item: item[0])
 	return aux
 def bigrammer(folder):
+    counter = 0
     for filename in os.listdir(folder):
-        if filename.endswith('.txt'):
-            print(os.listdir(folder))
-            print('Starting file parsing...')
-            file_path = path.relpath(folder+'/'+filename)
-            with open(file_path, encoding='utf-8') as f:
-                content = f.read().lower()
-                content = re.sub('[^а-яё\ \']+', " ", content)
-                words = list(content.split())
-                biwords = nltk.bigrams(words)
-                bifreq = ListToFreqDict(list(biwords))
-                bisortfreq = sortFreqDict(bifreq)[:1000]
-                text_output2 = open(filename+'_bigramy.txt', 'w', encoding='utf-8')
-                for bisortfr in bisortfreq:
-                    text_output2.write(str(bisortfr) + '\n')
-                text_output2.close()
-                f.close()
-                print('Bigrams ready')
+        print(os.listdir(folder))
+        print('Starting file parsing...')
+        file_path = path.relpath(folder+'/'+filename)
+        with open(file_path, encoding='utf-8') as f:
+            content = f.read().lower().decode('utf-8')
+            content = re.sub('[^а-я\ \']+', " ", content)
+            words = list(content.split())
+            biwords = nltk.bigrams(words)
+            bifreq = ListToFreqDict(list(biwords))
+            bisortfreq = sortFreqDict(bifreq)
+            text_output2 = open(filename+'_bigramy.txt', 'w', encoding='utf-8')
+            for bisort in bisortfreq:
+                text_output2.write(str(bisortfreq))
+                counter += 1
+            if counter == 1000:
+                break
+            
+            text_output2.close()
+            f.close()
+            print('Bigrams ready')
 #pauk_texts('http://dolboeb.livejournal.com/2015/')
-bigrammer('Lebedev')
+bigrammer('Nosik')
