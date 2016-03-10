@@ -22,9 +22,13 @@ def pauk_texts(link):
                 cleantext = re.sub('Tags:.*?Share','',cleantext)
                 text_output.write(cleantext)
         text_output.close()
-def ListToFreqDict(wordlist, length):
+def ListToFreqDict(wordlist):
 	wordfreq = [wordlist.count(p) for p in wordlist]
+<<<<<<< Updated upstream
 	freqmetric = [x  for x in wordfreq]
+=======
+	freqmetric = [x for x in wordfreq]
+>>>>>>> Stashed changes
 	perem = zip(wordlist,freqmetric)
 	perem = list(set(perem))
 	return perem
@@ -38,11 +42,11 @@ def bigrammer(folder):
         print('Starting file parsing...')
         file_path = path.relpath(folder+'/'+filename)
         with open(file_path, encoding='utf-8') as f:
-            content = f.read().lower()
+            content = f.read().lower().decode('utf-8')
             content = re.sub('[^а-я\ \']+', " ", content)
             words = list(content.split())
             biwords = nltk.bigrams(words)
-            bifreq = ListToFreqDict(list(biwords),len(words))
+            bifreq = ListToFreqDict(list(biwords))
             bisortfreq = sortFreqDict(bifreq)
             text_output2 = open(filename+'_bigramy.txt', 'w', encoding='utf-8')
             text_output2.write(str(bisortfreq))
