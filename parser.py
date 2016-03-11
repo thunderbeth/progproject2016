@@ -24,15 +24,18 @@ def pauk_texts(link):
                 text_output.write(cleantext)
         text_output.close()
 def ListToFreqDict(wordlist):
-	wordfreq = [wordlist.count(p) for p in wordlist]
-	freqmetric = [x  for x in wordfreq]
-	perem = zip(wordlist,freqmetric)
-	perem = list(set(perem))
-	return perem
+    wordfreq = [wordlist.count(p) for p in wordlist]
+    freqmetric = [x  for x in wordfreq]
+    perem = zip(wordlist,freqmetric)
+    result = {}
+    for key, value in perem:
+        if key not in result.keys():
+            result[key] = value
+    return result
 def sortFreqDict(freqdict):
-	aux = sorted(freqdict,key=(lambda item: item[1]), reverse=True)
+    aux = sorted(freqdict,key=(lambda item: item[1]), reverse=True)
 	#aux = sorted(aux,key=lambda item: item[0])
-	return aux
+    return aux
 def bigrammer(folder):
     for filename in os.listdir(folder):
         if filename.endswith('.txt'):
