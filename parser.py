@@ -4,7 +4,6 @@ from bs4 import BeautifulSoup
 import os
 from os import path
 import nltk
-import json
 homepage = urllib.request.urlopen('http://dolboeb.livejournal.com/2015/')
 homepage_text = homepage.read().decode('utf-8')
 
@@ -46,27 +45,11 @@ def bigrammer(folder):
                 biwords = nltk.bigrams(words)
                 bifreq = ListToFreqDict(list(biwords))
                 bisortfreq = sortFreqDict(bifreq)[:1000]
-                with open(filename+'data.json', 'w') as fp:
-                    json.dump(bisortfreq, fp)
-                #text_output2 = open(filename+'_bigramy.txt', 'w', encoding='utf-8')
-                #for bisortfr in bisortfreq:
-                #    text_output2.write(str(bisortfr) + '\n')
-                #text_output2.close()
-                #f.close()
+                text_output2 = open(filename+'_bigramy.txt', 'w', encoding='utf-8')
+                for bisortfr in bisortfreq:
+                    text_output2.write(str(bisortfr) + '\n')
+                text_output2.close()
+                f.close()
                 print('Bigrams ready')
 #pauk_texts('http://dolboeb.livejournal.com/2015/')
-bigrammer('Nosik')
-def json_example(filename, filename2):
-    with open(filename, 'r') as fp: # первый файл
-        with open(filename2,'r') as fp2 #второй файл
-            data = json.load(fp)
-            data2 = json.load(fp2)
-            keys = [item[0] for item in data]
-            values = [item[1] for item in data]
-            dicdata1 = dict(zip(keys,values)) # cловарик первого файла, ищи что хочешь
-            keys2 = [item[0] for item in data2]
-            values2 = [item[1] for item in data2]
-            dicdata2 = dict(zip(keys,values)) # словарик второго файла, ищи что хочешь
-# если будет пытаться ругаться то конвертируй item'ы в строки, - str() - должно перестать
-# теперь скрещивай эти словарики двух файлов как тебе угодно и тащи что тебе угодно
-#json_example(01.txtdata.json)
+bigrammer('Lebedev')
