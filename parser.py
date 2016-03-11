@@ -49,8 +49,11 @@ def bigrammer(folder):
                 biwords = nltk.bigrams(words)
                 bifreq = ListToFreqDict(list(biwords))
                 bisortfreq = sortFreqDict(bifreq)[:1000]
-                with open(filename+'data.json', 'w') as fp:
+                print (bisortfreq)
+                '''
+                with open(filename+'data.json', 'w', encoding ='utf-8') as fp:
                     json.dump(bisortfreq, fp)
+                    '''
                 #text_output2 = open(filename+'_bigramy.txt', 'w', encoding='utf-8')
                 #for bisortfr in bisortfreq:
                 #    text_output2.write(str(bisortfr) + '\n')
@@ -59,17 +62,25 @@ def bigrammer(folder):
                 print('Bigrams ready')
 #pauk_texts('http://dolboeb.livejournal.com/2015/')
 bigrammer('Nosik')
+
+'''
 def json_example(filename, filename2):
-    with open(filename, 'r') as fp: # первый файл
-        with open(filename2,'r') as fp2 #второй файл
+    with open(filename, 'r', encoding ='utf-8') as fp: # первый файл
+        with open(filename2,'r', encoding ='utf-8') as fp2: #второй файл
             data = json.load(fp)
             data2 = json.load(fp2)
-            keys = [item[0] for item in data]
-            values = [item[1] for item in data]
-            dicdata1 = dict(zip(keys,values)) # cловарик первого файла, ищи что хочешь
+            keys1 = [item[0] for item in data]
+            values1 = [item[2] for item in data]
+            dicdata1 = dict(zip(keys1,values1)) # cловарик первого файла, ищи что хочешь
             keys2 = [item[0] for item in data2]
             values2 = [item[1] for item in data2]
-            dicdata2 = dict(zip(keys,values)) # словарик второго файла, ищи что хочешь
+            dicdata2 = dict(zip(keys2,values2)) 
+            print (dicdata1)
+            
+            # словарик второго файла, ищи что хочешь
 # если будет пытаться ругаться то конвертируй item'ы в строки, - str() - должно перестать
 # теперь скрещивай эти словарики двух файлов как тебе угодно и тащи что тебе угодно
 #json_example(01.txtdata.json)
+
+json_example('01.txtdata.json', '02.txtdata.json')
+'''
