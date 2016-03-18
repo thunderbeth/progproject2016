@@ -5,10 +5,10 @@ import os
 from os import path
 import nltk
 import json
-homepage = urllib.request.urlopen('http://dolboeb.livejournal.com/2015/')
+homepage = urllib.request.urlopen('http://tema.livejournal.com/2013/')
 homepage_text = homepage.read().decode('utf-8')
 
-month = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
+month = ['01', '07', '08', '09', '10', '11', '12', '03', '06', '02', '04', '05']
 def pauk_texts(link):
     for i in month:
         result = re.findall (link + i + '/[0-9]+', homepage_text)
@@ -23,6 +23,8 @@ def pauk_texts(link):
                 cleantext = re.sub('Tags:.*?Share','',cleantext)
                 text_output.write(cleantext)
         text_output.close()
+        
+        
 def ListToFreqDict(wordlist):
 	wordfreq = [wordlist.count(p) for p in wordlist]
 	freqmetric = [x  for x in wordfreq]
@@ -54,19 +56,10 @@ def bigrammer(folder):
                 #text_output2.close()
                 #f.close()
                 print('Bigrams ready')
-#pauk_texts('http://dolboeb.livejournal.com/2015/')
-bigrammer('Nosik')
-def json_example(filename, filename2):
-    with open(filename, 'r') as fp: # первый файл
-        with open(filename2,'r') as fp2 #второй файл
-            data = json.load(fp)
-            data2 = json.load(fp2)
-            keys = [item[0] for item in data]
-            values = [item[1] for item in data]
-            dicdata1 = dict(zip(keys,values)) # cловарик первого файла, ищи что хочешь
-            keys2 = [item[0] for item in data2]
-            values2 = [item[1] for item in data2]
-            dicdata2 = dict(zip(keys,values)) # словарик второго файла, ищи что хочешь
+                
+#pauk_texts('http://tema.livejournal.com/2013/')
+bigrammer('Lebedev')
+ # словарик второго файла, ищи что хочешь
 # если будет пытаться ругаться то конвертируй item'ы в строки, - str() - должно перестать
 # теперь скрещивай эти словарики двух файлов как тебе угодно и тащи что тебе угодно
 #json_example(01.txtdata.json)
