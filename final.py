@@ -100,7 +100,7 @@ for i in results:
     elif i >= (t+0.1):
         print ('No')
     else:
-        print ('p='+(t + 0.01- i)/0.02)
+        print ('p='+str((t + 0.01- i)/0.02))
 
 #for a, b, c in os.walk(path_unknown):
 #    for unknown in c:
