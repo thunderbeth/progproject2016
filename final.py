@@ -78,7 +78,7 @@ for c in unknown:
         
 results.sort()
 fig = plt.figure()
-t = 0.25
+t = 0.26
 x = []
 y = []
 for i in results:    
@@ -95,12 +95,12 @@ for i in results:
 plt.plot(x,y)
 
 for i in results:
-    if i <= t:
+    if i <= (t-0.1):
         print ('Yes')
-        print ((t - i)/0.02)
-    elif i >= t:
+    elif i >= (t+0.1):
         print ('No')
-        print ((t - i)/0.02)
+    else:
+        print ('p='+(t + 0.01- i)/0.02)
 
 #for a, b, c in os.walk(path_unknown):
 #    for unknown in c:
