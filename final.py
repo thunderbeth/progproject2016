@@ -77,27 +77,29 @@ for c in unknown:
     results.append(sum(level)/len(level))
         
 results.sort()
+
+#let the graph, results and roc-curve be only for Lebedev
 fig = plt.figure()
 t = 0.26
 x = []
 y = []
 for i in results:    
-    if i<=(t-0.1):
-        y.append(0)
-        x.append(i)
-    elif i>=(t+0.1):
+    if i<=(t-0.01):
         y.append(1)
         x.append(i)
+    elif i>=(t+0.01):
+        y.append(0)
+        x.append(i)
     else:
-        y.append((i-t+0.1)/0.2)
+        y.append((t+0.01-i)/0.02)
         x.append(i)
 
 plt.plot(x,y)
 
 for i in results:
-    if i <= (t-0.1):
+    if i <= (t-0.01):
         print ('Yes')
-    elif i >= (t+0.1):
+    elif i >= (t+0.01):
         print ('No')
     else:
         print ('p='+str((t + 0.01- i)/0.02))
