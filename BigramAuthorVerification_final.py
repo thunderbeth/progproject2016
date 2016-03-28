@@ -75,9 +75,9 @@ for c in unknown:
         arr2.append(new_compare(path_unknown + c, path + a))
         arr_for_sums = []
     results.append(sum(level)/len(level))
-print (results)
+
     
-'''
+
 results.sort()
 
 #let the graph, results and roc-curve be only for Lebedev
@@ -114,4 +114,3 @@ for i in results:
 
  #print (sorted(list_of_ms)[len(list_of_ms)//2])         
 
-'''
