@@ -5,10 +5,10 @@ import os
 from os import path
 import nltk
 import json
-homepage = urllib.request.urlopen('http://tema.livejournal.com/2013/')
+homepage = urllib.request.urlopen('http://dolboeb.livejournal.com/2012/')
 homepage_text = homepage.read().decode('utf-8')
 
-month = ['01', '07', '08', '09', '10', '11', '12', '03', '06', '02', '04', '05']
+month = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10']
 def pauk_texts(link):
     for i in month:
         result = re.findall (link + i + '/[0-9]+', homepage_text)
@@ -57,8 +57,8 @@ def bigrammer(folder):
                 #f.close()
                 print('Bigrams ready')
                 
-#pauk_texts('http://tema.livejournal.com/2013/')
-bigrammer('Lebedev')
+#pauk_texts('http://dolboeb.livejournal.com/2012/')
+bigrammer('un_N')
  # словарик второго файла, ищи что хочешь
 # если будет пытаться ругаться то конвертируй item'ы в строки, - str() - должно перестать
 # теперь скрещивай эти словарики двух файлов как тебе угодно и тащи что тебе угодно
